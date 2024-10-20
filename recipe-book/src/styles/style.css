@@ -1,0 +1,80 @@
+/* ? reset */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    transition: all .3s linear;
+}
+img{
+    width: 100%;
+}
+/* ? colors variable for project*/
+:root{
+    --gray: #b1a8a8;
+    --alfagray: rgba(202, 207, 212, 0.664);
+    --red: red;
+    --blue: blue;
+    --white: #ffffff3a;
+}
+/*?  general page */
+body{
+    margin: .8rem auto;
+}
+.container{
+    padding: .8rem 4%;
+}
+.container-root{
+    padding: .5rem 20%;
+}
+.container-root div{
+    padding: 1rem 0 0 0 ;
+}
+.hero{
+    padding: 2rem 1rem;
+}
+.hero h1{
+    font-size: 2.5rem;
+    line-height: 1rem;
+    text-transform: capitalize;
+}
+.hero span{
+    color: var(--gray);
+    margin: 0;
+}
+.hero-cont p, ul li, ol li{
+    font-style: italic;
+}
+.hero-content{
+    border: .1rem solid var(--alfagray);
+    box-shadow: 0 0 1rem 0 var(--alfagray);
+    padding: 3rem;
+    background-color: var(--white);
+}
+.hero-content h2{
+    padding: 0 0 1rem 0;
+    border-bottom: .1rem dashed var(--alfagray);
+    color: var(--gray);
+}
+.hero-textContent{
+    display: flex;
+}
+
+.hero-textContent .hero-text{
+    padding: 1rem 1.5rem 0 0;
+    width: 80%;
+}
+.hero-textContent .hero-image img{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+.hero-content .hero-links a{
+    text-decoration: none;
+    color: var(--red);
+    margin: 0 1rem;
+}
+.hero-content .hero-links a:hover{
+    color: var(--blue);
+    cursor: pointer;
+}
