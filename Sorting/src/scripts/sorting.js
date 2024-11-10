@@ -5,6 +5,7 @@ const insertionSortBtn = document.getElementById("insertion-sort");
 const mergeSortBtn = document.getElementById("merge-sort");
 const result = document.getElementById('result');
 const errorText = document.getElementById('error');
+const clearBtn = document.getElementById("clear");
 
 // array sorting types
 function bubbleSortfunction(arr) {
@@ -61,8 +62,7 @@ function merge(left, right) {
     let leftIndex = 0;
     let rightIndex = 0;
 
-    while (leftIndex < left.length &&
-            rightIndex < right.length) {
+    while (leftIndex < left.length && rightIndex < right.length) {
         if (left[leftIndex] < right[rightIndex]) {
             res.push(left[leftIndex]);
             leftIndex++;
@@ -77,10 +77,11 @@ function merge(left, right) {
 
 function calculateWithCacheFunction(sortFunction) {
     const cache = {};
-
     return function calculate(input) {
         const cacheKey = input.join(',');
-
+        if (cache[cacheKey]) {
+            return cache[cacheKey];
+        };
         const result = sortFunction([...input]);
         cache[cacheKey] = result; 
         return result;
@@ -90,13 +91,13 @@ function calculateWithCacheFunction(sortFunction) {
 const cachedBubbleSort = calculateWithCacheFunction(bubbleSortfunction);
 const cachedSelectionSort = calculateWithCacheFunction(selectionSortFunction);
 const cachedInsertionSort = calculateWithCacheFunction(insertionSortFunction);
-const cacheMergeSort = calculateWithCacheFunction(mergeSortFunction);
+const cachedMergeSort = calculateWithCacheFunction(mergeSortFunction);
 
-function numbersIsSorted(cachedSort) {
+function handleSort(cachedSort) {
     const inputValue = input.value.trim();
     errorText.innerText = "";
 
-    if (!inputValue) {;
+    if (!inputValue) {
         errorText.innerText = "No numbers to sort.";
         result.innerText = "";
         return;
@@ -123,7 +124,14 @@ function numbersIsSorted(cachedSort) {
     }
 }
 
-bubbleSortBtn.addEventListener("click", () => numbersIsSorted(cachedBubbleSort));
-selectionSortBtn.addEventListener("click", () => numbersIsSorted(cachedSelectionSort));
-insertionSortBtn.addEventListener("click", () => numbersIsSorted(cachedInsertionSort));
-mergeSortBtn.addEventListener("click", () =>  numbersIsSorted(cacheMergeSort));
+function handleClear() {
+    input.value = "";
+    result.innerText = "";
+    errorText.innerText = "";
+} 
+
+bubbleSortBtn.addEventListener("click", () => handleSort(cachedBubbleSort));
+selectionSortBtn.addEventListener("click", () => handleSort(cachedSelectionSort));
+insertionSortBtn.addEventListener("click", () => handleSort(cachedInsertionSort));
+mergeSortBtn.addEventListener("click", () =>  handleSort(cachedMergeSort));
+clearBtn.addEventListener("click", handleClear);
